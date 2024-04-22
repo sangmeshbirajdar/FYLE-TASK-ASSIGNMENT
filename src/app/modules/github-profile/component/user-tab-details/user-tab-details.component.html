@@ -1,0 +1,139 @@
+<ng-container
+  *ngIf="{
+    user: user$ | async,
+    selectedBtnIndex: selectedBtnIndex$ | async,
+    starRepo: starredRepos$ | async,
+    isLoading: isLoading$ | async
+  } as data"
+>
+<app-loading-git-tab-skeleton
+*ngIf="data.isLoading"
+></app-loading-git-tab-skeleton>
+
+  <div *ngIf="!data.isLoading && data.user">
+    <div class="flex align-items-center mb-4">
+      <div
+        class="switch-btn mr-6"
+        *ngFor="let btn of buttons; let i = index"
+        [ngClass]="{ active: i === data.selectedBtnIndex }"
+        (click)="toggleButton(i)"
+      >
+        {{ btn.text }}
+        <span *ngIf="btn.value != null" class="span-text">{{ btn.value }}</span>
+      </div>
+    </div>
+
+    <div
+      class="flex-container c-height mb-3 overflow-scroll overflow-y-visible"
+      *ngIf="data.selectedBtnIndex == 0"
+    >
+      <p-card
+        class="mr-3 mb-3 w-19rem h-15rem overflow-hidden"
+        *ngFor="let repo of repos"
+      >
+        <div class="mt-10 mb-3 pl-4 pt-3">
+          <span
+            (click)="openLinkInNewTab(repo.html_url)"
+            class=" repo-txt text-white cursor-pointer"
+            >{{ repo.name }}</span
+          >
+        </div>
+
+        <div class="flex flex-row overflow-hidden card-desc h-7rem pl-4">
+          <div class="p-0 overflow-scroll font-normal text-300 f-14 pr-2">
+            {{ repo.description }}
+          </div>
+        </div>
+
+        <div class="flex flex-column h-5rem mt-2">
+          <div class="flex flex-row f-16 align-items-center pl-4 mb-3">
+            <div class="mr-4" *ngIf="repo.language != null">
+              <i class="pi pi-circle-fill mr-1"></i>
+              {{ repo.language }}
+            </div>
+            <div class="flex flex-row">
+              <i class="pi pi-star mr-1"></i>
+              {{ repo.stargazers_count }}
+            </div>
+          </div>
+          <div
+            class="flex flex-row overflow-x-auto overflow-y-hidden"
+            *ngIf="repo.topics.length > 0"
+          >
+            <div *ngFor="let topic of repo.topics">
+              <div
+                class="flex flex-grow-1 border-round border-1 p-1 ml-2 f-14 w-max"
+              >
+                {{ topic }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </p-card>
+    </div>
+    <div
+      class="flex-container  mb-3 overflow-scroll overflow-y-visible"
+      *ngIf="data.selectedBtnIndex == 1"
+    >
+      <p-card
+        class="mr-3 mb-3 w-19rem overflow-hidden"
+        *ngFor="let repo of data.starRepo"
+      >
+        <div class="flex flex-row mt-10 mb-3 pl-4 pt-3 align-items-center">
+          <img
+            [ngSrc]="repo.owner.avatar_url"
+            width="50"
+            height="50"
+            priority
+          />
+          <div class="ml-4 white-space-normal">
+            <span
+              (click)="openLinkInNewTab(repo.html_url)"
+              class="repo-txt text-white cursor-pointer"
+              >{{ repo.name }}</span
+            >
+          </div>
+        </div>
+        <div class="flex flex-row overflow-hidden card-desc h-7rem pl-4">
+          <div class="p-0 overflow-scroll font-normal text-300 f-14 pr-2">
+            {{ repo.description }}
+          </div>
+        </div>
+        <div class="flex flex-column h-5rem mt-2">
+          <div class="flex flex-row f-16 align-items-center pl-4 mb-3">
+            <div class="mr-4" *ngIf="repo.language != null">
+              <i class="pi pi-circle-fill mr-1"></i>
+              {{ repo.language }}
+            </div>
+            <div class="flex flex-row">
+              <i class="pi pi-star mr-1"></i>
+              {{ repo.stargazers_count }}
+            </div>
+          </div>
+          <div
+            class="flex overflow-x-auto overflow-y-hidden"
+            *ngIf="repo.topics.length > 0"
+          >
+            <div *ngFor="let topic of repo.topics">
+              <div class="border-round border-1 p-1 ml-2 f-14 w-max">
+                {{ topic }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </p-card>
+    </div>
+   
+  </div>
+  <p-paginator
+  *ngIf="
+    data.selectedBtnIndex == 0 && (repos == null ? false : repos.length > 0)
+  "
+  class="flex"
+  [rows]="10"
+  [totalRecords]="totalRecords"
+  [rowsPerPageOptions]="[10, 25, 50, 100]"
+  (onPageChange)="paginate($event)"
+></p-paginator>
+
+</ng-container>

@@ -1,0 +1,36 @@
+/* You can add global styles to this file, and also import other style files */
+body {
+    padding: 2em;
+    height: 100vh;
+  //  background-color: #222;
+    font-family: -apple-system, BlinkMacSystemFont, “Segoe UI”, Roboto, Helvetica, Arial, sans-serif, “Apple Color Emoji”, “Segoe UI Emoji”, “Segoe UI Symbol”;
+  }
+
+/* Override the default theme variables */
+// :root {
+//     --primary-color: #fff;
+//     --text-color: #fff;
+//     --background-color: #222;
+//   }
+
+
+  /* Import the ng prime styles */
+@import 'primeng/resources/themes/lara-dark-blue/theme.css';
+@import '/node_modules/primeflex/primeflex.css';
+@import 'primeng/resources/primeng.min.css';
+@import '/node_modules/primeicons/primeicons.css';
+/* Override the ng prime styles with the dark theme styles */
+.p-button,
+.p-dialog {
+  background-color: #333;
+  color: #fff;
+}
+.f-14 {
+  font-size: 14px;
+}
+.f-16 {
+  font-size: 16px;
+}
+.f-20 {
+  font-size: 20px;
+}

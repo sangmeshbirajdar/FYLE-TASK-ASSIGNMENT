@@ -1,0 +1,56 @@
+.switch-btn {
+    padding: 8px 16px;
+    background-color: transparent;
+    color: #4a494d;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 6px;
+  } 
+  
+  .switch-btn.active {
+    background-color: #4a494d;
+    color: white;
+    border: 1px solid #4a494d;
+  }
+  
+
+::ng-host .p-card .p-card-content {
+  padding: .25rem 0;
+}
+
+.span-text  {
+  font-size: 12px;
+  background-color: #4a494d;
+  padding-left: 4px;
+  color: white;
+  padding-right: 4px;
+  border-radius: 2px;
+  }
+  
+  .flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    .p-card > .p-card-body {
+       padding: 0px;
+    }
+  }
+
+  .card {
+    flex-basis: 25%;
+  }
+
+  ::ng-deep .p-card .p-card-body {
+    padding: 0;
+}
+
+::ng-deep .p-card .p-card-content {
+  padding: 0;
+}
+
+.c-height {
+  height: calc(100vh - 300px);
+}
+
+.repo-txt:hover {
+  text-decoration: underline;
+}

@@ -1,0 +1,21 @@
+
+
+<p-autoComplete
+      [(ngModel)]="selectedUser"
+      [suggestions]="searchResults"
+      (completeMethod)="search$.next($event.query)"
+      placeholder="Search for a user"
+      field="login"
+      [size]="50"
+      [style]="{
+        display: 'inline-flex',
+        height: '50px'
+      }"
+      [minLength]="2"
+      (onSelect)="showUserOtherDetails()"
+    > 
+      <ng-template let-user pTemplate="item">
+        <img src="{{ user.avatar_url }}" alt="{{ user.login }}" width="25" height="25" style="vertical-align: middle; margin-right: 5px;">
+        <span>{{ user.login }}</span>
+      </ng-template>
+    </p-autoComplete>

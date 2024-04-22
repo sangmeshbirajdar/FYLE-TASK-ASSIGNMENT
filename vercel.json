@@ -1,0 +1,11 @@
+{
+  "redirects": [
+    
+        {
+            "source": "/api/:match*",
+            "destination": "https://api.github.com/:match*"
+        }
+    
+  ]
+ 
+}
