@@ -26,9 +26,13 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
  * Run Specific component file test using `npm run test -- --include src/app/modules/github-profile/component/user-tab-details` command in cli
  * Run `ng test` to execute the unit tests  
 
-# Build
+# Build![Screenshot 2024-04-21 214459](https://github.com/sangmeshbirajdar/FYLE-TASK-ASSIGNMENT/assets/125272249/83542f98-79ad-4698-bb26-290919af9243)
+
+![Screenshot 2024-04-21 214620](https://github.com/sangmeshbirajdar/FYLE-TASK-ASSIGNMENT/assets/125272249/ba9adaef-bef8-419c-8d94-a8df66aba07c)
 
  * Run `ng build --configuration=uat` to build the project for UAT enviroment same can be build with prodction envirnoment configuration
+
+   
 
 
 # Development server
